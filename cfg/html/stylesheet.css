@@ -1,0 +1,179 @@
+html {
+	color: #34495e;
+	font-family: 'Segoe UI';
+}
+
+#wrap {
+    text-align: center;
+	width: 35vw;
+	min-height: 400px;
+	margin-top: 10%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: rgb(46, 46, 46, 0.85);
+	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.5), 0px 2px 10px 0px rgba(0, 0, 0, 0.5);
+	color: rgba(255, 255, 255, 0.9);
+	border-radius: 2px;
+}
+
+/* all table info */
+table {
+	text-align: left;
+	color: white;
+}
+
+th, td {
+	font-weight: 500;
+	padding-top: 7px;
+	text-align: center;
+	padding-left: 9px;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+th {
+	padding-top: 7px;
+	padding-bottom: 7px;
+	height: 23px;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+tr.heading {
+	font-size: 1vw;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+tr {
+	text-align: center;
+	font-size: 120%;
+	font-family: 'Roboto Condensed', sans-serif;
+	color: rgba(255, 255, 255, 0.9);
+	
+    /*text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);*/
+}
+
+/* TR Heading */
+tr.heading {
+	font-weight: 500;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.9);
+	padding: 7px;
+}
+
+/*all job icons and count */
+.job_text {
+	font-family: 'Segoe UI';
+    float: left;
+    margin-top: 3px;
+	margin-left: 40px;
+    padding-left: 5px;
+	font-size: 15px;
+}
+
+.jobs {
+    
+    height: 1vw;
+    width: auto;
+    padding-top: 0;
+    padding-bottom: 15px;
+    background-color: #1c1c1c96;
+    border-collapse: collapse;
+}
+
+/*other jobs*/
+.extra_text {
+	font-family: 'Segoe UI';
+	float: left;
+    margin-top: 0px;
+	margin-left: 50px;
+    padding-left: 70px;
+    font-size: 15px;
+}
+
+.jobs_extra {
+    height: 0.3vw;
+	width: 35vw;
+	margin-top: 0px;
+    padding-top: 0px;
+	padding-bottom: 20px;
+	background-color: #1c1c1c96;
+    border-collapse: collapse;
+}
+
+/*all job icons and count */
+.c_text {
+	font-family: 'Segoe UI';
+    float: left;
+    margin-top: 3px;
+	margin-left: 55px;
+    padding-left: 5px;
+	font-size: 15px;
+	text-decoration: underline;
+}
+
+.catagories {
+    
+    height: 1vw;
+    width: auto;
+    padding-top: 0;
+    padding-bottom: 15px;
+}
+/*owner admin and moderator info */
+.s_text {
+	font-family: 'Segoe UI';
+    float: left;
+    margin-top: 3px;
+	margin-left: 10px;
+    padding-left: 5px;
+    font-size: 15px;
+}
+
+.special {
+    height: 1vw;
+    width: auto;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+/*header bar info */
+.header {
+    font-family: 'Segoe UI';
+    text-align: center;
+	height: 3vw;
+	width: auto;
+	background-color: #1c1c1cd0;
+	padding: 0px;
+	border-top-left-radius: 2px 2px;
+    border-top-right-radius: 2px 2px;
+}
+
+/*header text info */
+#title {
+	padding-left: 5px;
+	padding-top: 0px;
+	text-align: center !important;
+	font-size: 30px;
+	color: rgb(223, 223, 223);
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+/*footer bar info */
+.bottom {
+	height: 30px;
+	width: 35vw;
+    background-color: #1c1c1cd0;
+    margin-top: 70%;
+    margin-left: auto;
+	margin-right: auto;
+	border-top-left-radius: 2px 2px;
+	border-top-right-radius: 2px 2px;
+}
+
+/*footer text info */
+#footer {
+    color: rgba(10, 247, 255, 0.445);
+    text-align: right;
+    font-size: 20px;
+    padding-top: 2px;
+    padding-right: 10px;
+	font-family: 'Roboto Condensed', sans-serif;
+}
