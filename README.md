@@ -1,9 +1,6 @@
 # vrp_scoreboard
 a scoreboard for vrp 2  ImagicTheCat/vRP version
 
-
-https://cdn.discordapp.com/attachments/696052708855250984/749415156399996989/unknown.png
-
 Features:
   Character Name
   Job title
