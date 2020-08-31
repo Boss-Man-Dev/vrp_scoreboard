@@ -71,10 +71,10 @@ function SB.event:getPlayerInfo()
 			end
 		elseif user:hasPermission(self.cfg.admin) then
 			if self.cfg.text then
-				content = content.."<div style="..self.cfg.mod_color..">".."Admin".."</div>"
+				content = content.."<div style="..self.cfg.admin_color..">".."Admin".."</div>"
 				info.rank = content
 			else
-				content = content.."<div><img src=\""..self.cfg.mod_img.."\" /></div>"
+				content = content.."<div><img src=\""..self.cfg.admin_img.."\" /></div>"
 				info.rank = content
 			end
 		elseif user:hasPermission(self.cfg.mod) then
