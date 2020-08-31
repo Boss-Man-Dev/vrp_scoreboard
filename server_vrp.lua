@@ -113,3 +113,13 @@ function SB.event:getJobCount()
 end
 
 vRP:registerExtension(SB)
+
+-- Check for version updates.
+PerformHttpRequest("https://github.com/Boss-Man-Dev/vrp_scoreboard/releases", function(errorCode, result, headers)
+    local version = 'v1.0'
+    if (string.find(tostring(result), version) == nil) then
+        print("\n\r[vrp_scoreboard] WARNING: Your version is not up to date. Please make sure to update whenever possible.\n\r")
+    else
+        print("\n\r[vrp_scoreboard] You are running the latest version. Thanks for using a Boss Mod!\n\r")
+    end
+end, "GET", "", "")
