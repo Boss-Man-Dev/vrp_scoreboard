@@ -13,3 +13,5 @@ Features:
 
 any questions feel free to ask
 https://discord.gg/a5HHbSf
+
+Check releases for any updates before sending me any errors
