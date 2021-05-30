@@ -1,0 +1,109 @@
+html {
+	color: #34495e;
+	font-family: 'Segoe UI';
+}
+
+#wrap {
+	display: none;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.9);
+    background-color: rgb(46, 46, 46, 0.85);
+    max-width: 35%;
+	max-height: 60%;
+	margin-top: 10%;
+	margin-left: 30%;
+}
+
+#title {
+	background-color: #1c1c1cd0;
+    padding: 0%;
+    margin: 0%;
+    color: gainsboro;
+    font-size: 30px;
+}
+
+#logo {
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
+}
+
+#job {
+	background-color: #1c1c1c96;
+}
+
+#extra {
+	background-color: #1c1c1c96
+}
+
+#catagories {
+	justify-content: space-between;
+	padding-left: 6%;
+	padding-right: 6%;
+}
+
+#counts {
+	background-color: #1c1c1cd0
+}
+
+#table {
+	max-height: 40%;
+	background-color:  #1c1c1c36;
+}
+
+table {
+	text-align: left;
+	color: white;
+}
+
+th, td {
+	font-weight: 10%;
+	padding-top: 2%;
+	text-align: center;
+	padding-left: 9px;
+	color: rgba(255, 255, 255, 0.9);
+	
+}
+
+tr {
+	color: #fff;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0%;
+    margin: 0%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.logo {
+    padding-top: 1%;
+}
+
+.exit {
+    padding-left: 0%;
+}
+
+.b-counts {
+    padding: 1%;
+}
+
+.extra {
+    display: none;
+}
+
+.discord {
+    color: darkturquoise;
+    padding-left: 5%;
+}
+
+@keyframes spin {
+    from {
+        transform:rotateY(0deg);
+    }
+    to {
+        transform:rotateY(360deg);
+    }
+}

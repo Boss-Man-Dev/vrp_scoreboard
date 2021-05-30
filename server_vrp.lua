@@ -1,3 +1,13 @@
+--[[
+	owner info --- line 80
+	admin info --- line 108
+	mod info   --- line 135
+	user info  --- line 162
+	counters   --- line 189
+	ver check  --- line 214
+--]]
+
+
 local lang = vRP.lang
 local Luang = module("vrp", "lib/Luang")
 
@@ -10,21 +20,22 @@ function SB:__construct()
   
 	self.cfg = module("vrp_scoreboard", "cfg/cfg")
 	
-	-- iteams
-	--vRP.EXT.Inventory:defineItem("phone_book", self.lang.item.phone_book.name(), lang.item.phone_book.description(), nil, 0.5)
-	
 	-- load lang
 	self.luang = Luang()
 	self.luang:loadLocale(vRP.cfg.lang, module("vrp_scoreboard", "cfg/lang/"..vRP.cfg.lang))
 	self.lang = self.luang.lang[vRP.cfg.lang]
 	
+	-- items
+	vRP.EXT.Inventory:defineItem("phonebook", self.lang.item.phonebook.name(), self.lang.item.phonebook.description(), nil, 0.5)
 end
 
+--client call for table info
 RegisterServerEvent('SB:getPlayerInfo')
 AddEventHandler('SB:getPlayerInfo', function()
 	vRP:triggerEvent("getPlayerInfo")
 end)
 
+--client call for job/player counts
 RegisterServerEvent('SB:getJobCount')
 AddEventHandler('SB:getJobCount', function()
 	vRP:triggerEvent("getJobCount")
@@ -32,82 +43,168 @@ end)
 
 SB.event = {}
 
-local info = {
-	name = "",
-	job = "Unemplyed",
-}
+local info = {}
 
+--table info
 function SB.event:getPlayerInfo()
-	local user = vRP.users_by_source[source]
 	
-	local gtype = user:getGroupByType("job")
+	local users = vRP.EXT.Group:getUsersByPermission(self.cfg.info.user.perm)
+	local config = self.cfg.info
 	
-	local identity = vRP.EXT.Identity:getIdentity(user.cid)
-	local firstName = identity.firstname
-	local lastname = identity.name
-
-	local phoneNumber = identity.phone
-	
-	if user ~= nil then
-----------------------name info
-		info.name = firstName and lastname
------------------------------job info
-		if info.job == nil then
-			info.job = "Unemplyed"
-		else 
-			info.job = vRP.EXT.Group:getGroupTitle(gtype)
+	for _,user in pairs(users) do
+		local identity = vRP.EXT.Identity:getIdentity(user.cid)
+		local gtype = user:getGroupByType("job")
+		local id = user.id
+		local firstName = identity.firstname
+		local lastName = identity.name
+		local phoneNumber = "Hidden"
+		local m_job = "Unemployed"
+		if m_job then
+			if not user:hasGroup(gtype) then
+				user:addGroup(self.cfg.default)
+			else 
+				m_job = vRP.EXT.Group:getGroupTitle(gtype)
+			end
 		end
-----------------------phone info
-		info.phone = phoneNumber
----------------------rank info
-		local content = ""
-		if user:hasPermission(self.cfg.owner) then
-			if self.cfg.text then
-				content = content.."<div style="..self.cfg.owner_color..">".."Owner".."</div>"
-				info.rank = content
-			else
-				content = content.."<div><img src=\""..self.cfg.owner_img.."\" /></div>"
-				info.rank = content
-			end
-		elseif user:hasPermission(self.cfg.admin) then
-			if self.cfg.text then
-				content = content.."<div style="..self.cfg.admin_color..">".."Admin".."</div>"
-				info.rank = content
-			else
-				content = content.."<div><img src=\""..self.cfg.admin_img.."\" /></div>"
-				info.rank = content
-			end
-		elseif user:hasPermission(self.cfg.mod) then
-			if self.cfg.text then
-				content = content.."<div style="..self.cfg.mod_color..">".."Admin".."</div>"
-				info.rank = content
-			else
-				content = content.."<div><img src=\""..self.cfg.mod_img.."\" /></div>"
-				info.rank = content
+		if phoneNumber then
+			if users then
+				phoneNumber = "Hidden"
+				if user then
+					phoneNumber = user.identity.phone
+				end
 			end
 		end
 		
+-----------------ALL SERVER OWNER PLAYER INFO----------------------------
+		local content = ""
+		if user:hasPermission(config.owner.perm) then
+			if self.cfg.text then
+				if self.cfg.color then
+					info.name = content.."<div style="..config.owner.color..">"..firstName.." "..lastName.." ("..id..")".."</div>"
+					info.job = content.."<div style="..config.owner.color..">"..m_job.."</div>"
+					info.phone = content.."<div style="..config.owner.color..">"..phoneNumber.."</div>"
+					info.rank = content.."<div style="..config.owner.color..">"..config.owner.text.."</div>"
+				else 
+					info.name = content.."<div style="..self.cfg.d_color..">"..firstName.." "..lastName.."</div>"
+					info.job = content.."<div style="..self.cfg.d_color..">"..m_job.."</div>"
+					info.phone = content.."<div style="..self.cfg.d_color..">"..phoneNumber.."</div>"
+					info.rank = content.."<div style="..self.cfg.d_color..">"..config.owner.text.."</div>"
+				end
+			else
+				if self.cfg.color then
+					info.name = content.."<div style="..config.owner.color..">"..firstName.." "..lastName.." ("..id..")".."</div>"
+					info.job = content.."<div style="..config.owner.color..">"..m_job.."</div>"
+					info.phone = content.."<div style="..config.owner.color..">"..phoneNumber.."</div>"
+					info.rank = content.."<div><img src=\""..config.owner.img.."\" /></div>"
+				else
+					info.name = content.."<div style="..self.cfg.d_color..">"..firstName.." "..lastName.." ("..id..")".."</div>"
+					info.job = content.."<div style="..self.cfg.d_color..">"..m_job.."</div>"
+					info.phone = content.."<div style="..self.cfg.d_color..">"..phoneNumber.."</div>"
+					info.rank = content.."<div><img src=\""..config.owner.img.."\" /></div>"
+				end
+			end
+-----------------ALL SERVER ADMIN PLAYER INFO----------------------------
+		elseif user:hasPermission(config.admin.perm) then
+			if self.cfg.text then
+				if self.cfg.color then
+					info.name = content.."<div style="..config.admin.color..">"..firstName.." "..lastName.." ("..id..")".."</div>"
+					info.job = content.."<div style="..config.admin.color..">"..m_job.."</div>"
+					info.phone = content.."<div style="..config.admin.color..">"..phoneNumber.."</div>"
+					info.rank = content.."<div style="..config.admin.color..">"..config.admin.text.."</div>"
+				else 
+					info.name = content.."<div style="..self.cfg.d_color..">"..firstName.." "..lastName.." ("..id..")".."</div>"
+					info.job = content.."<div style="..self.cfg.d_color..">"..m_job.."</div>"
+					info.phone = content.."<div style="..self.cfg.d_color..">"..phoneNumber.."</div>"
+					info.rank = content.."<div style="..self.cfg.d_color..">"..config.admin.text.."</div>"
+				end
+			else
+				if self.cfg.color then
+					info.name = content.."<div style="..config.admin.color..">"..firstName.." "..lastName.." ("..id..")".."</div>"
+					info.job = content.."<div style="..config.admin.color..">"..m_job.."</div>"
+					info.phone = content.."<div style="..config.admin.color..">"..phoneNumber.."</div>"
+					info.rank = content.."<div><img src=\""..config.admin.img.."\" /></div>"
+				else
+					info.name = content.."<div style="..self.cfg.d_color..">"..firstName.." "..lastName.." ("..id..")".."</div>"
+					info.job = content.."<div style="..self.cfg.d_color..">"..m_job.."</div>"
+					info.phone = content.."<div style="..self.cfg.d_color..">"..phoneNumber.."</div>"
+					info.rank = content.."<div><img src=\""..config.admin.img.."\" /></div>"
+				end
+			end
+-----------------ALL SERVER MOD PLAYER INFO----------------------------
+		elseif user:hasPermission(config.mod.perm) then
+			if self.cfg.text then
+				if self.cfg.color then
+					info.name = content.."<div style="..config.mod.color..">"..firstName.." "..lastName.." ("..id..")".."</div>"
+					info.job = content.."<div style="..config.mod.color..">"..m_job.."</div>"
+					info.phone = content.."<div style="..config.mod.color..">"..phoneNumber.."</div>"
+					info.rank = content.."<div style="..config.mod.color..">"..config.mod.text.."</div>"
+				else 
+					info.name = content.."<div style="..self.cfg.d_color..">"..firstName.." "..lastName.." ("..id..")".."</div>"
+					info.job = content.."<div style="..self.cfg.d_color..">"..m_job.."</div>"
+					info.phone = content.."<div style="..self.cfg.d_color..">"..phoneNumber.."</div>"
+					info.rank = content.."<div style="..self.cfg.d_color..">"..config.mod.text.."</div>"
+				end
+			else
+				if self.cfg.color then
+					info.name = content.."<div style="..config.mod.color..">"..firstName.." "..lastName.." ("..id..")".."</div>"
+					info.job = content.."<div style="..config.mod.color..">"..m_job.."</div>"
+					info.phone = content.."<div style="..config.mod.color..">"..phoneNumber.."</div>"
+					info.rank = content.."<div><img src=\""..config.mod.img.."\" /></div>"
+				else
+					info.name = content.."<div style="..self.cfg.d_color..">"..firstName.." "..lastName.." ("..id..")".."</div>"
+					info.job = content.."<div style="..self.cfg.d_color..">"..m_job.."</div>"
+					info.phone = content.."<div style="..self.cfg.d_color..">"..phoneNumber.."</div>"
+					info.rank = content.."<div><img src=\""..config.mod.img.."\" /></div>"
+				end
+			end
+-----------------ALL SERVER USER PLAYER INFO----------------------------
+		else
+			if self.cfg.user_text then
+				info.name = content.."<div style="..config.user.color..">"..firstName.." "..lastName.." ("..id..")".."</div>"
+				info.job = content.."<div style="..config.user.color..">"..m_job.."</div>"
+				info.phone = content.."<div style="..config.user.color..">"..phoneNumber.."</div>"
+				info.rank = content.."<div style="..config.user.color..">"..config.user.text.."</div>"
+			else
+				if self.cfg.blank then
+					info.name = content.."<div style="..config.user.color..">"..firstName.." "..lastName.." ("..id..")".."</div>"
+					info.job = content.."<div style="..config.user.color..">"..m_job.."</div>"
+					info.phone = content.."<div style="..config.user.color..">"..phoneNumber.."</div>"
+					info.rank = content.."<div><img src=\""..config.user.b_img.."\" /></div>"
+				else
+					info.name = content.."<div style="..config.user.color..">"..firstName.." "..lastName.." ("..id..")".."</div>"
+					info.job = content.."<div style="..config.user.color..">"..m_job.."</div>"
+					info.phone = content.."<div style="..config.user.color..">"..phoneNumber.."</div>"
+					info.rank = content.."<div><img src=\""..config.user.img.."\" /></div>"
+				end
+			end
+		end
 		TriggerClientEvent("SB:OpenScoreboard", source, info)
-	end	
+	end
 end
 
 local j_info = {}
 
+--job/player counts
 function SB.event:getJobCount()
-	--primary jobs
-	j_info.ems = #vRP.EXT.Group:getUsersByPermission(self.cfg.ems)
-	j_info.police = #vRP.EXT.Group:getUsersByPermission(self.cfg.police)
-	j_info.taxi = #vRP.EXT.Group:getUsersByPermission(self.cfg.taxi)
-	j_info.mechanic = #vRP.EXT.Group:getUsersByPermission(self.cfg.mechanic)
+	local perm = self.cfg.perms
+	local config = self.cfg.info
+	--primary job
+	j_info.job1 = #vRP.EXT.Group:getUsersByPermission(perm.default.job1)
+	j_info.job2 = #vRP.EXT.Group:getUsersByPermission(perm.default.job2)
+	j_info.job3 = #vRP.EXT.Group:getUsersByPermission(perm.default.job3)
+	j_info.job4 = #vRP.EXT.Group:getUsersByPermission(perm.default.job4)
 	
-	--extra jobs  
-	j_info.cardealer = #vRP.EXT.Group:getUsersByPermission(self.cfg.cardealer)
-	j_info.estate = #vRP.EXT.Group:getUsersByPermission(self.cfg.estate)
-	
-	--special (owner/Admin/mod)
-	j_info.owner = #vRP.EXT.Group:getUsersByPermission(self.cfg.owner)
-	j_info.admin = #vRP.EXT.Group:getUsersByPermission(self.cfg.admin)
-	j_info.mod = #vRP.EXT.Group:getUsersByPermission(self.cfg.mod)
+	--extra job counts
+	j_info.ex1 = #vRP.EXT.Group:getUsersByPermission(perm.extra.ex1)
+	j_info.ex2 = #vRP.EXT.Group:getUsersByPermission(perm.extra.ex2)
+	j_info.ex3 = #vRP.EXT.Group:getUsersByPermission(perm.extra.ex3)
+	j_info.ex4 = #vRP.EXT.Group:getUsersByPermission(perm.extra.ex4)
+
+	--special counts (owner/Admin/mod/all users)
+	j_info.owner = #vRP.EXT.Group:getUsersByPermission(config.owner.perm)
+	j_info.admin = #vRP.EXT.Group:getUsersByPermission(config.admin.perm)
+	j_info.mod = #vRP.EXT.Group:getUsersByPermission(config.mod.perm)
+	j_info.user = #vRP.EXT.Group:getUsersByPermission(config.user.perm)
 	
 	TriggerClientEvent("SB:getJobCount", source, j_info)
 end
@@ -115,11 +212,12 @@ end
 vRP:registerExtension(SB)
 
 -- Check for version updates.
-PerformHttpRequest("https://github.com/Boss-Man-Dev/vrp_scoreboard/releases/tag/v1.6", function(errorCode, result, headers)
-    local version = 'v1.0'
-    if (string.find(tostring(result), version) == nil) then
-        print("\n\r[vrp_scoreboard] WARNING: Your version is not up to date. Please make sure to update whenever possible.\n\r")
+PerformHttpRequest("https://github.com/Boss-Man-Dev/vrp_scoreboard/tags", function(errorCode, result, headers)
+    local tag = 'v1.6'
+    if (string.find(tostring(result), tag) == nil) then
+        print("\n\r\27[10;91m[vrp_scoreboard] WARNING: Your version is not up to date. Please make sure to update whenever possible.\n\r\27[0m")
     else
-        print("\n\r[vrp_scoreboard] You are running the latest version. Thanks for using a Boss Mod!\n\r")
+        print("\r\27[10;92m[vrp_scoreboard] You are running the latest version. Thanks for using a Boss Mod!\r\n\27[0m")
+
     end
 end, "GET", "", "")

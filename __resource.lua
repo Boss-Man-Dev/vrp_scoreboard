@@ -16,8 +16,11 @@ client_script {
 files {
 	'cfg.lua',
     'cfg/html/index.html',
-    'cfg/html/stylesheet.css',
-    'cfg/html/reset.css',
-    'cfg/html/config.js',
-    'cfg/html/listener.js',
+    'cfg/html/css/stylesheet.css',
+    'cfg/html/js/config.js',
+    'cfg/html/js/listener.js',
+	'cfg/html/images/discord.png',
+	'cfg/html/images/exit.png',
+	'cfg/html/images/logo.png',
+	'cfg/html/images/white-arrow.png',
 }

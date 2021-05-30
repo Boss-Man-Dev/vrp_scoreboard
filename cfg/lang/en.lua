@@ -5,8 +5,8 @@ local lang = {
       error = "~r~Invalid character."
     },
 	item = {
-		phone_book = {
-		  name = "Phone Book",
+		phonebook = {
+		  name = "Phonebook",
 		  description = "Used to hide Phone Number."
 		},
 		

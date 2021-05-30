@@ -1,60 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
-	<script src="listener.js" type="text/javascript"></script>
-	<link rel="stylesheet" href="nui://vrp_scoreboard/cfg/html/stylesheet.css"> 	<!-- css style for scoreboard -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+	<script src="nui://vrp_scoreboard/cfg/html/js/listener.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="nui://vrp_scoreboard/cfg/html/css/reset.css">
+    <link rel="stylesheet" href="nui://vrp_scoreboard/cfg/html/css/stylesheet.css">
+    <title>Scoreboard New</title>
 </head>
 <body>
-	<!-- js wrap handler -->
-	<div style="display: none;" id="wrap">
-		
-		<!-- header info and title is handled by the config.js -->
-		<div class="header">
-			<div id="title">
-				<h1></h1>
-			</div>
-		</div>
-		
-		<!-- get emojis at https://emojipedia.org/ -->
-		<!-- primary jobs -->
-		<div class="jobs" id="job">
-			<div class="job_text" style="color:red;"> EMS: <span id="ems">0</span></div>
-			<div class="job_text" style="color:#5ea1e0;"> Police: <span id="police">0</span></div>
-			<div class="job_text" style="color:yellow;"> Taxi: <span id="taxi">0</span></div>
-			<div class="job_text" style="color:grey;"> Mechanic: <span id="mechanic">0</span></div>
-		</div>
-		
-		<!-- extra/other jobs seperatte line -->
-		<div class="jobs_extra" style="display: none;" id="extra">
-			<div class="extra_text" style="color:lightblue;"> Dealership: <span id="cardealer">0</span></div>
-			<div class="extra_text" style="color:#58ce93;"> Estate: <span id="estate">0</span></div>
-		</div>
+    <div class="main" style="display: none;" id="wrap">
+        <div id="top">
+               <ul id="title">
+                    <li class="logo" id="logo"><img src="nui://vrp_scoreboard/cfg/html/images/logo.png" alt="" width="75" height="70"></li>
+                    <li class="sv-name" id="name"></li>
+                    <li class="exit" id="exit"><a href="#"><img src="nui://vrp_scoreboard/cfg/html/images/exit.png" alt="" width="20" height="20"></a></li>
+               </ul>
 
-		<div class="catagories" id="cats">
-			<div class="c_text" style="color:white;"> Name</div>
-			<div class="c_text" style="color:white;"> Job</div>
-			<div class="c_text" style="color:white;"> Phone</div>
-		</div>
-		<!-- table for players -->
-		<table id="ptbl" width="100%">
-		</table>
-			
-		<!-- bottom bar and items -->
-		<div class="bottom">
-			<!--left text info -->
-			<div id="special">
-				<div class="s_text" style="color:#f100ff;"> Owner: <span id="owner">0</span></div>
-				<div class="s_text" style="color:#ff8800;"> Admin: <span id="admin">0</span></div>
-				<div class="s_text" style="color:#00ff85;"> Mod: <span id="mod">0</span></div>
-			</div>
-			<!--discord link -->
-			<div id="footer">
-				<h2></h2>
-			</div>
-		</div>
-		<script src="nui://vrp_scoreboard/cfg/html/config.js"></script>
-	</div>
+               <ul class="jobs" id="job">
+                    <li style="color:red;"> SA Fire Dept: 			<span id="job1">0</span></li>
+                    <li style="color:#5ea1e0;"> SA State Troopers: 	<span id="job2">0</span></li>
+                    <li style="color:#05ce05;"> Jerr-Dan Towing: 	<span id="job3">0</span></li>
+                    <li style="color:yellow;"> Taxi: 				<span id="job4">0</span></li>
+                    <li>
+                        <a href="#" class="arrow" id="arrow">
+                            <img src="nui://vrp_scoreboard/cfg/html/images/white-arrow.png" alt="toggle extra"  width="15" height="10">
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="extra" id="extra">
+                    <li style="color:#014b13;"> Malitia: <span id="ex1">0</span></li>
+                    <li style="color:#66aef1;"> Pilots: <span id="ex2">0</span></li>
+                    <li style="color:#c5c5c5;"> SW Mafia <span id="ex3">0</span></li>
+                    <!--<li style="color:grey;"> TBD <span id="ex4">0</span></li>-->
+                </ul>
+
+                <ul class="info" id="catagories">
+                    <li>Name</li>
+                    <li>Job</li>
+                    <li></li>
+                </ul>
+
+                <div id="table" style="overflow-y: auto;">
+                    <table id="ptbl" width="100%">
+                    </table>
+                </div>
+
+                <div>
+                    <ul class="b-counts" id="counts">
+                        <li style="color:#f100ff;"> Owner: <span id="owner">0</span></li>
+                        <li style="color:#ff8800;"> Admin: <span id="admin">0</span></li>
+                        <li style="color:#00ff85;"> Mod: <span id="mod">0</span></li>
+                        <li style="color:white;"> User: <span id="user">0</span></li>
+                        <li class="discord" id="discord" href="#"></li>
+                    </ul>
+                </div>
+        </div>
+        <script src="nui://vrp_scoreboard/cfg/html/js/config.js"></script>
+    </div>
 </body>
 </html>
