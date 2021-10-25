@@ -1,0 +1,362 @@
+/* Default */
+*{
+    font-family: 'Lato', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Special */
+.selection{
+    user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+}
+/* HTML  */
+a{
+    text-decoration: none;
+    position: relative;
+}
+
+li{
+    list-style-type: none;
+}
+table{
+    width: 100%;
+}
+/* Animation  */
+@keyframes rotate{  /* Animation for Server Icon */
+    from{
+        transform: rotateY(0deg);
+    }to{
+        transform: rotateY(360deg);
+    }
+}
+
+/* MAIN  */
+#container{
+    background-color: #242424;
+    min-height: 20vh;
+    width: 85vh;
+    border-radius: 10px;
+    overflow: hidden;
+    border: thick double #888888;
+    margin: 4% auto 0;
+}
+
+.flex{
+    display: flex;
+}
+
+.row{
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 12px;
+}
+
+/* Socail Section  */
+
+#social_links{
+    position: absolute;
+    top: 4%;
+    right: 6%;
+    min-height: 20vh;
+    width: auto;
+    background-color: #242424;
+    border-radius: 10px;
+    overflow: hidden;
+    border: thick double #888888;
+}
+
+.social_info--container{
+    width: 100%;
+    min-height: 20vh;
+    padding-top: 4px;
+}
+.social_link--list {
+    height: 100%;
+    width: auto;
+}
+
+.social_link{
+    height: 6vh;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+.social{
+    color: #ffffff;
+    font-size: 18px;
+    margin: auto 2px auto 10px;
+}
+
+.social_link--info{
+    font-size: 18px;
+    margin: auto 10px auto 8px;
+}
+/* top Section  */
+#header {
+    min-height: 15vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(51, 51, 51);
+    border: 1px solid #888888;
+    border-width: 0 0 2px 0;
+}
+
+nav {
+    height: 4vh;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    background-color: #575757;
+}
+
+.nav__title {
+    font-size: 16px;
+    color: #fcfcfc;
+    margin: 0 12px;
+    font-weight: bold
+}
+
+.nav__link--list {
+    display: flex;
+}
+
+.nav__link--anchor {
+    margin: 0 8px;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.nav__link--anchor:hover{
+    opacity: 0.7;
+    color: black;
+}
+
+.server__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.server__info--container {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+
+.server__picture--mask {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+    margin: 10px 0;
+    animation: rotate 3000ms infinite linear;
+}
+
+.server__picture{
+    width: 100%;
+}
+
+.server__name{
+    font-size: 35px;
+    margin: auto 0;
+    text-align: center;
+    color: white;
+}
+
+/* mid Section  */
+
+#player_info {
+    min-height: 15vh;
+    max-height: 65vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #1d1d1d;
+    border: 1px solid #888888;
+    border-width: 0 0 2px 0;
+}
+
+.job__info{
+    height: 4vh;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    background-color: #575757;
+    border: 1px solid #888888;
+    border-width: 0 0 2px 0;
+    margin-bottom: 4px;
+}
+.job__link--list {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: auto;
+}
+.job__link{
+    display: flex;
+    justify-content: space-evenly;
+    width: 10vh;
+    height: 4vh;
+    margin: 0 auto;
+}
+.job__link--info {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 18px;
+    margin: auto 0;
+}
+/* table Info  */
+
+.profile{
+    width: 95%;
+    min-height: 8vh;
+    max-height: 8vh;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid #888888; 
+    margin: 2px auto;
+    background-color: rgb(73, 73, 73);
+}
+.player_info{
+    width: 100%;
+    height: 8vh;
+}
+
+.player_info--id_container{
+    width: 10%;
+    height: 8vh;
+}
+.player_id--mask{
+    width: 6vh;
+    height: 6vh;
+    background-color: rgb(63, 63, 63);
+    border: 2px solid #888888;
+    border-radius: 50%;
+    margin: 4px auto;
+    position: relative;
+}
+
+.player_id{
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.player_info--name_container{
+    width: 52%;
+    height: auto;
+    background-color: rgb(51, 51, 51);
+}
+.player_name--mask{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+.player_name{  
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.player_info--extras_container{
+    width: 38%;
+    height: auto;
+}
+.extra_link--mask{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2px;
+}
+.extra_link{
+    display: flex;
+    width: 92%;
+    height: 45%;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    margin: 0 auto;
+    justify-content: left;
+}
+.extra_link i, .extra_link i:hover{
+    margin: 4px 4px;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    opacity: 1;
+    cursor: default;
+}
+
+.extra_info{
+    margin: 3px 4px;
+} 
+
+/* Footer  */
+footer {
+    width: 100%;
+    height: 4vh;
+    background-color: #575757;
+}
+
+.count_info{
+    height: 4vh;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    justify-content: space-between;
+}
+
+.count_info--container{
+    width: 100%;
+    height: 4vh;
+}
+
+.count_link--list {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.count_link{
+    display: flex;
+    justify-content: space-around;
+    width: auto;
+    height: 4vh;
+    margin: 0 auto;
+}
+.count_link--info {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 18px;
+    margin: auto 2px;
+}
