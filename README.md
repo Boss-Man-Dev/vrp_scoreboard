@@ -1,4 +1,4 @@
-# vrp_screboard
+# vrp_screboard Remastered
 
 simple player list/ player scoreboard for vrp 2
 
