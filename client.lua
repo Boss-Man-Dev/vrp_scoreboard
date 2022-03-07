@@ -1,8 +1,14 @@
---##########	VRP Main	##########--
-Tunnel = module("vrp", "lib/Tunnel")
-Proxy = module("vrp", "lib/Proxy")
-local cvRP = module("vrp", "client/vRP")
-vRP = cvRP()
+-- init vRP server context
+Proxy = module("lib/Proxy")
+Tunnel = module("lib/Tunnel")
+
+local cvRP = module("vrp", "vRP")
+vRP = cvRP() -- instantiate vRP
+
+local pvRP = {}
+-- load script in vRP context
+pvRP.loadScript = module
+Proxy.addInterface("vRP", pvRP)
 
 local cfg = module("vrp_scoreboard", "cfg/cfg")
 
