@@ -1,9 +1,10 @@
+--##########	VRP Main	##########--
 -- init vRP server context
-Proxy = module("lib/Proxy")
-Tunnel = module("lib/Tunnel")
+Tunnel = module("vrp", "lib/Tunnel")
+Proxy = module("vrp", "lib/Proxy")
 
-local cvRP = module("vrp", "vRP")
-vRP = cvRP() -- instantiate vRP
+local cvRP = module("vrp", "client/vRP")
+vRP = cvRP()
 
 local pvRP = {}
 -- load script in vRP context
